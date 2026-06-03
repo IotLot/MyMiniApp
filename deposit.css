@@ -1,0 +1,473 @@
+/* Общие стили страницы */
+.deposit-page {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px 20px 20px;
+}
+
+/* Верхняя панель */
+.deposit-header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.back-button {
+    background: #2c2e33;
+    border: 1.5px solid white;
+    border-radius: 30px;
+    padding: 8px 20px;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.back-button:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+.tabs-container {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    flex: 1;
+}
+
+.deposit-tab {
+    background: #2c2e33;
+    border: 1.5px solid white;
+    border-radius: 30px;
+    padding: 8px 20px;
+    color: white;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.deposit-tab.active {
+    background: white;
+    color: #212224;
+    border-color: white;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-left: auto;
+}
+
+.action-btn {
+    background: transparent;
+    border: 1.5px solid white;
+    border-radius: 30px;
+    padding: 8px 16px;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.action-btn:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+.swipe-container {
+    overflow: hidden;
+    position: relative;
+    touch-action: pan-y pinch-zoom;
+    border-radius: 28px;
+    margin-top: 10px;
+}
+
+.swipe-wrapper {
+    display: flex;
+    transition: transform 0.3s ease-out;
+    will-change: transform;
+    width: 100%;
+}
+
+.deposit-block {
+    flex: 0 0 100%;
+    background: transparent;
+    border: 1.5px solid rgba(255,255,255,0.3);
+    border-radius: 28px;
+    padding: 28px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.summary-block {
+    flex: 0 0 100%;
+    background: transparent;
+    border: 1.5px solid rgba(255,255,255,0.3);
+    border-radius: 28px;
+    padding: 28px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.summary-block h3 {
+    color: white;
+    font-size: 24px;
+    margin-bottom: 28px;
+    text-align: center;
+}
+
+.summary-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.summary-card {
+    flex: 1;
+    min-width: 180px;
+    background: #2c2e33;
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+}
+
+.summary-label {
+    color: rgba(255,255,255,0.6);
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.summary-value {
+    color: white;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.deposit-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 28px;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-field label {
+    color: rgba(255,255,255,0.7);
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.form-field input,
+.form-field select {
+    padding: 12px 14px;
+    background: #2c2e33;
+    border: 1px solid #3a3e45;
+    border-radius: 16px;
+    color: white;
+    font-size: 15px;
+}
+
+.form-field input:focus,
+.form-field select:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+.term-group {
+    display: flex;
+    gap: 10px;
+}
+
+.term-group input {
+    flex: 2;
+}
+
+.term-group select {
+    flex: 1;
+}
+
+.block-results {
+    display: flex;
+    gap: 20px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.result-item {
+    flex: 1;
+    background: #2c2e33;
+    border-radius: 20px;
+    padding: 16px;
+    text-align: center;
+}
+
+.result-item .label {
+    color: rgba(255,255,255,0.6);
+    font-size: 12px;
+    margin-bottom: 6px;
+}
+
+.result-item .value {
+    color: white;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.page-indicator {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 24px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.dot.active {
+    width: 24px;
+    border-radius: 4px;
+    background: white;
+}
+
+/* ============================================
+   МОБИЛЬНАЯ АДАПТАЦИЯ (фикс выезжания)
+   ============================================ */
+@media (max-width: 768px) {
+    /* Запрещаем зумирование на мобилах */
+    body {
+        touch-action: pan-y pinch-zoom;
+    }
+    
+    .deposit-page {
+        padding: 0;
+    }
+    
+    /* Вертикальное расположение кнопок */
+    .deposit-header {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        padding: 0 16px;
+        margin-bottom: 20px;
+    }
+    
+    /* Первая строка: Назад + табы */
+    .top-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+    
+    .back-button {
+        padding: 8px 16px;
+        font-size: 13px;
+        flex-shrink: 0;
+        align-self: flex-start;
+    }
+    
+    .tabs-container {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        flex: 1;
+    }
+    
+    .deposit-tab {
+        padding: 8px 16px;
+        font-size: 13px;
+        flex-shrink: 0;
+    }
+    
+    /* Вторая строка: кнопки действий */
+    .actions-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+    }
+    
+    .left-actions {
+        display: flex;
+        gap: 8px;
+        flex: 1;
+    }
+    
+    .action-btn {
+        padding: 8px 12px;
+        font-size: 12px;
+        flex: 1;
+        text-align: center;
+        justify-content: center;
+    }
+    
+    /* Кнопка Итог отдельно справа */
+    .summary-btn-wrapper {
+        flex-shrink: 0;
+    }
+    
+    #summaryBtn {
+        background: #2c2e33;
+        border: 1.5px solid white;
+        border-radius: 30px;
+        padding: 8px 20px;
+        color: white;
+        font-weight: 500;
+        font-size: 12px;
+        white-space: nowrap;
+    }
+    
+    .divider {
+        display: none;
+    }
+    
+    /* Контейнер свайпа */
+    .swipe-container {
+        border-radius: 0;
+        overflow: hidden;
+        width: 100%;
+    }
+    
+    .swipe-wrapper {
+        width: 100%;
+    }
+    
+    .deposit-block,
+    .summary-block {
+        flex: 0 0 100%;
+        margin: 0;
+        padding: 20px 16px;
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+    }
+    
+    .deposit-form {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        margin-bottom: 18px;
+    }
+    
+    .form-field {
+        width: 100%;
+    }
+    
+    .form-field label {
+        font-size: 12px;
+        margin-bottom: 5px;
+    }
+    
+    .form-field input,
+    .form-field select {
+        padding: 10px 12px;
+        font-size: 14px;
+        border-radius: 12px;
+    }
+    
+    .term-group {
+        gap: 8px;
+    }
+    
+    .block-results {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding-top: 16px;
+    }
+    
+    .result-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        padding: 12px 14px;
+        border-radius: 14px;
+        text-align: left;
+    }
+    
+    .result-item .label {
+        font-size: 12px;
+        margin-bottom: 0;
+    }
+    
+    .result-item .value {
+        font-size: 18px;
+    }
+    
+    .page-indicator {
+        margin-top: 16px;
+        gap: 6px;
+    }
+    
+    .dot {
+        width: 6px;
+        height: 6px;
+    }
+    
+    .dot.active {
+        width: 16px;
+    }
+    
+    .summary-block h3 {
+        font-size: 18px;
+        margin-bottom: 18px;
+    }
+    
+    .summary-row {
+        gap: 12px;
+        flex-direction: column;
+    }
+    
+    .summary-card {
+        padding: 14px;
+        border-radius: 14px;
+    }
+    
+    .summary-value {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 500px) {
+    .deposit-block,
+    .summary-block {
+        padding: 16px 12px;
+    }
+    
+    .result-item .value {
+        font-size: 16px;
+    }
+    
+    .summary-value {
+        font-size: 20px;
+    }
+}

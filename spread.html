@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>coNVErt - Калькулятор спреда</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="spread.css">
+</head>
+<body>
+    <div class="container">
+        <div class="top-section">
+            <a href="index.html" class="back-button">← Назад</a>
+        </div>
+        
+        <div class="calculator-layout">
+            <!-- Левая колонка - поля ввода -->
+            <div class="inputs-column">
+                <h2>Калькулятор спреда</h2>
+                
+                <div class="input-group">
+                    <label>Цена покупки (за 1 ед.)</label>
+                    <input type="number" id="buyPrice" step="0.01" value="0">
+                    <span class="input-hint">Например: покупка USDT в P2P</span>
+                </div>
+                
+                <div class="input-group">
+                    <label>Цена продажи (за 1 ед.)</label>
+                    <input type="number" id="sellPrice" step="0.01" value="0">
+                    <span class="input-hint">Продажа на другой площадке</span>
+                </div>
+                
+                <div class="input-group">
+                    <label>Объём (кол-во ед.)</label>
+                    <input type="number" id="volume" step="0.01" value="0">
+                    <span class="input-hint">Типичный объём сделки</span>
+                </div>
+                
+                <div class="input-group">
+                    <label>Доп. расходы</label>
+                    <input type="number" id="extraCosts" step="0.01" value="0">
+                    <span class="input-hint">Переводы, вывод, прочее</span>
+                </div>
+                
+                <div class="input-group">
+                    <label>Комиссия покупки (%)</label>
+                    <input type="number" id="buyFee" step="0.01" value="0">
+                    <span class="input-hint">Комиссия платформы</span>
+                </div>
+                
+                <div class="input-group">
+                    <label>Комиссия продажи (%)</label>
+                    <input type="number" id="sellFee" step="0.01" value="0">
+                    <span class="input-hint">Комиссия платформы</span>
+                </div>
+                
+                <!-- Кнопка сброса -->
+                <button class="reset-button" id="resetButton">Сбросить все поля</button>
+            </div>
+            
+            <!-- Правая колонка - результаты -->
+            <div class="results-column">
+                <!-- Статус сделки -->
+                <div class="result-card">
+                    <div class="result-label">Статус сделки</div>
+                    <div class="status-badge" id="statusBadge">—</div>
+                </div>
+                
+                <!-- Чистая прибыль -->
+                <div class="result-card">
+                    <div class="result-label">Чистая прибыль</div>
+                    <div class="result-value" id="netProfit">0.00</div>
+                </div>
+                
+                <!-- Спред и спред в процентах объединены -->
+                <div class="result-card combined">
+                    <div class="combined-row">
+                        <div class="combined-item">
+                            <div class="result-label">Спред</div>
+                            <div class="result-value" id="spread">0.00</div>
+                        </div>
+                        <div class="combined-item">
+                            <div class="result-label">Спред в процентах</div>
+                            <div class="result-value" id="spreadPercent">0.00%</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Затраты и доход объединены -->
+                <div class="result-card combined">
+                    <div class="combined-row">
+                        <div class="combined-item">
+                            <div class="result-label">Затраты (вход)</div>
+                            <div class="result-value" id="totalCost">0.00</div>
+                        </div>
+                        <div class="combined-item">
+                            <div class="result-label">Доход (выход)</div>
+                            <div class="result-value" id="totalRevenue">0.00</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Информационный блок -->
+        <div class="info-section">
+            <h3>Что такое калькулятор спреда</h3>
+            <p>Калькулятор спреда — это инструмент, который автоматически считает разницу между ценой покупки и продажи актива и показывает фактический спред в деньгах и процентах. Его можно использовать для расчета арбитража в P2P, чтобы быстро видеть, насколько выгодна связка между разными объявлениями и площадками.</p>
+            <p>С помощью калькулятора спреда криптовалюты трейдеры и арбитражники могут оценивать потенциальную доходность сделки с учётом разницы курсов и комиссий. Такой подход помогает быстрее находить прибыльные возможности, снижать влияние человеческой ошибки и принимать более обоснованные торговые решения.</p>
+        </div>
+    </div>
+    
+    <script src="spread.js"></script>
+</body>
+</html>

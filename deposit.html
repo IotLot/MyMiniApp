@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>coNVErt - Калькулятор вкладов</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="deposit.css">
+</head>
+<body>
+    <div class="container">
+        <div class="top-section">
+            <div class="deposit-header">
+                <a href="index.html" class="back-button">← Назад</a>
+                <div class="tabs-container" id="tabsContainer"></div>
+                <div class="header-actions">
+                    <button class="action-btn" id="addDepositBtn">+ Добавить</button>
+                    <button class="action-btn" id="clearDepositBtn">Удалить</button>
+                    <button class="action-btn" id="resetAllBtn">Сбросить всё</button>
+                    <button class="action-btn" id="summaryBtn">Итог</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="deposit-page">
+            <!-- Контейнер для свайпа -->
+            <div class="swipe-container" id="swipeContainer">
+                <div class="swipe-wrapper" id="swipeWrapper"></div>
+            </div>
+            
+            <!-- Индикатор страниц -->
+            <div class="page-indicator" id="pageIndicator"></div>
+        </div>
+    </div>
+    
+    <script src="deposit.js"></script>
+</body>
+</html>
