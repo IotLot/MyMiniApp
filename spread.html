@@ -12,52 +12,60 @@
         <div class="top-section">
             <a href="index.html" class="back-button">← Назад</a>
         </div>
-        
+
+        <!-- Переключатель вкладок -->
+        <div class="page-tabs">
+            <button class="page-tab active" data-tab="spreadTab">Спред</button>
+            <button class="page-tab" data-tab="targetTab">Целевая прибыль</button>
+        </div>
+
+        <!-- ВКЛАДКА: Спред -->
+        <div class="tab-panel" id="spreadTab">
         <div class="calculator-layout">
             <!-- Левая колонка - поля ввода -->
             <div class="inputs-column">
                 <h2>Калькулятор спреда</h2>
-                
-                <div class="input-group">
+
+                <div class="input-group" id="buyPriceGroup">
                     <label>Цена покупки (за 1 ед.)</label>
                     <input type="number" id="buyPrice" step="0.01" value="0">
                     <span class="input-hint">Например: покупка USDT в P2P</span>
                 </div>
-                
-                <div class="input-group">
+
+                <div class="input-group" id="sellPriceGroup">
                     <label>Цена продажи (за 1 ед.)</label>
                     <input type="number" id="sellPrice" step="0.01" value="0">
                     <span class="input-hint">Продажа на другой площадке</span>
                 </div>
-                
+
                 <div class="input-group">
                     <label>Объём (кол-во ед.)</label>
                     <input type="number" id="volume" step="0.01" value="0">
                     <span class="input-hint">Типичный объём сделки</span>
                 </div>
-                
+
                 <div class="input-group">
                     <label>Доп. расходы</label>
                     <input type="number" id="extraCosts" step="0.01" value="0">
                     <span class="input-hint">Переводы, вывод, прочее</span>
                 </div>
-                
+
                 <div class="input-group">
                     <label>Комиссия покупки (%)</label>
                     <input type="number" id="buyFee" step="0.01" value="0">
                     <span class="input-hint">Комиссия платформы</span>
                 </div>
-                
+
                 <div class="input-group">
                     <label>Комиссия продажи (%)</label>
                     <input type="number" id="sellFee" step="0.01" value="0">
                     <span class="input-hint">Комиссия платформы</span>
                 </div>
-                
+
                 <!-- Кнопка сброса -->
                 <button class="reset-button" id="resetButton">Сбросить все поля</button>
             </div>
-            
+
             <!-- Правая колонка - результаты -->
             <div class="results-column">
                 <!-- Статус сделки -->
@@ -65,13 +73,13 @@
                     <div class="result-label">Статус сделки</div>
                     <div class="status-badge" id="statusBadge">—</div>
                 </div>
-                
+
                 <!-- Чистая прибыль -->
                 <div class="result-card">
                     <div class="result-label">Чистая прибыль</div>
                     <div class="result-value" id="netProfit">0.00</div>
                 </div>
-                
+
                 <!-- Спред и спред в процентах объединены -->
                 <div class="result-card combined">
                     <div class="combined-row">
@@ -85,7 +93,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Затраты и доход объединены -->
                 <div class="result-card combined">
                     <div class="combined-row">
@@ -99,14 +107,113 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Безубыточная цена продажи -->
+                <div class="result-card">
+                    <div class="result-label">Безубыточная цена продажи</div>
+                    <div class="result-value" id="breakEvenPrice">—</div>
+                </div>
+
+                <!-- Копирование результата -->
+                <button class="reset-button" id="copyButton">Скопировать результат</button>
             </div>
         </div>
-        
+
         <!-- Информационный блок -->
         <div class="info-section">
             <h3>Что такое калькулятор спреда</h3>
             <p>Калькулятор спреда — это инструмент, который автоматически считает разницу между ценой покупки и продажи актива и показывает фактический спред в деньгах и процентах. Его можно использовать для расчета арбитража в P2P, чтобы быстро видеть, насколько выгодна связка между разными объявлениями и площадками.</p>
             <p>С помощью калькулятора спреда криптовалюты трейдеры и арбитражники могут оценивать потенциальную доходность сделки с учётом разницы курсов и комиссий. Такой подход помогает быстрее находить прибыльные возможности, снижать влияние человеческой ошибки и принимать более обоснованные торговые решения.</p>
+        </div>
+
+        <!-- История расчётов -->
+        <div class="history-section">
+            <h3>История расчётов</h3>
+            <button class="reset-button" id="saveHistoryButton">Сохранить текущий расчёт</button>
+            <div class="history-list" id="historyList"></div>
+        </div>
+        </div>
+
+        <!-- ВКЛАДКА: Целевая прибыль -->
+        <div class="tab-panel" id="targetTab" style="display: none;">
+        <div class="calculator-layout">
+            <div class="inputs-column">
+                <h2>Целевая прибыль</h2>
+
+                <div class="input-group">
+                    <label>Что рассчитать</label>
+                    <select id="targetSolveFor">
+                        <option value="volume">Нужный объём (цена продажи известна)</option>
+                        <option value="sellPrice">Нужную цену продажи (объём известен)</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>Целевая прибыль</label>
+                    <input type="number" id="targetProfit" step="0.01" value="0">
+                    <span class="input-hint">Сколько нужно заработать</span>
+                </div>
+
+                <div class="input-group">
+                    <label>Цена покупки (за 1 ед.)</label>
+                    <input type="number" id="targetBuyPrice" step="0.01" value="0">
+                </div>
+
+                <div class="input-group" id="targetSellPriceGroup">
+                    <label>Цена продажи (за 1 ед.)</label>
+                    <input type="number" id="targetSellPrice" step="0.01" value="0">
+                    <span class="input-hint">Используется при расчёте нужного объёма</span>
+                </div>
+
+                <div class="input-group" id="targetVolumeGroup" style="display: none;">
+                    <label>Объём (кол-во ед.)</label>
+                    <input type="number" id="targetVolume" step="0.01" value="0">
+                    <span class="input-hint">Используется при расчёте нужной цены продажи</span>
+                </div>
+
+                <div class="input-group">
+                    <label>Доп. расходы</label>
+                    <input type="number" id="targetExtraCosts" step="0.01" value="0">
+                </div>
+
+                <div class="input-group">
+                    <label>Комиссия покупки (%)</label>
+                    <input type="number" id="targetBuyFee" step="0.01" value="0">
+                </div>
+
+                <div class="input-group">
+                    <label>Комиссия продажи (%)</label>
+                    <input type="number" id="targetSellFee" step="0.01" value="0">
+                </div>
+
+                <button class="reset-button" id="targetResetButton">Сбросить все поля</button>
+            </div>
+
+            <div class="results-column">
+                <div class="result-card">
+                    <div class="result-label" id="targetResultLabel">Необходимый объём</div>
+                    <div class="result-value" id="targetResult">—</div>
+                </div>
+
+                <div class="result-card combined">
+                    <div class="combined-row">
+                        <div class="combined-item">
+                            <div class="result-label">Затраты (вход)</div>
+                            <div class="result-value" id="targetTotalCost">0.00</div>
+                        </div>
+                        <div class="combined-item">
+                            <div class="result-label">Доход (выход)</div>
+                            <div class="result-value" id="targetTotalRevenue">0.00</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h3>Как это работает</h3>
+            <p>Укажите, сколько вы хотите заработать, и калькулятор подскажет, какой объём сделки нужен при известной цене продажи — либо по какой цене нужно продать при известном объёме, чтобы выйти на целевую прибыль.</p>
+        </div>
         </div>
     </div>
     

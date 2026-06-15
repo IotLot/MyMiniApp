@@ -64,6 +64,20 @@
     border-color: white;
 }
 
+.deposit-tab.dragging {
+    position: relative;
+    z-index: 1000;
+    opacity: 0.7;
+    cursor: grabbing;
+    transition: none;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.deposit-tab.drop-target {
+    border-color: #3498db;
+    background: rgba(52, 152, 219, 0.25);
+}
+
 .header-actions {
     display: flex;
     align-items: center;

@@ -191,9 +191,98 @@ document.addEventListener('DOMContentLoaded', () => {
             const tab = document.createElement('div');
             tab.className = `deposit-tab ${idx === currentIndex ? 'active' : ''}`;
             tab.textContent = `Вклад №${deposit.number}`;
-            tab.addEventListener('click', () => goToPage(idx));
+            tab.dataset.index = idx;
+            tab.addEventListener('click', () => {
+                if (tab.dataset.suppressClick === 'true') {
+                    tab.dataset.suppressClick = '';
+                    return;
+                }
+                goToPage(idx);
+            });
+            tab.addEventListener('pointerdown', (e) => startTabDrag(e, tab, idx));
             tabsContainer.appendChild(tab);
         });
+    }
+
+    // Перетаскивание табов для смены порядка вкладов
+    const LONG_PRESS_MS = 350;
+    const MOVE_CANCEL_THRESHOLD = 10;
+
+    function startTabDrag(e, tab, idx) {
+        if (e.button !== undefined && e.button !== 0) return;
+
+        const startX = e.clientX;
+        const startY = e.clientY;
+        let dragging = false;
+
+        const longPressTimer = setTimeout(() => {
+            dragging = true;
+            tab.classList.add('dragging');
+            tab.style.touchAction = 'none';
+            tab.dataset.suppressClick = 'true';
+        }, LONG_PRESS_MS);
+
+        const onMove = (moveEvent) => {
+            if (!dragging) {
+                const dx = moveEvent.clientX - startX;
+                const dy = moveEvent.clientY - startY;
+                if (Math.abs(dx) > MOVE_CANCEL_THRESHOLD || Math.abs(dy) > MOVE_CANCEL_THRESHOLD) {
+                    clearTimeout(longPressTimer);
+                }
+                return;
+            }
+
+            moveEvent.preventDefault();
+            const dx = moveEvent.clientX - startX;
+            const dy = moveEvent.clientY - startY;
+            tab.style.transform = `translate(${dx}px, ${dy}px)`;
+
+            tabsContainer.querySelectorAll('.deposit-tab').forEach(el => {
+                if (el === tab) return;
+                const rect = el.getBoundingClientRect();
+                const inside = moveEvent.clientX >= rect.left && moveEvent.clientX <= rect.right &&
+                                moveEvent.clientY >= rect.top && moveEvent.clientY <= rect.bottom;
+                el.classList.toggle('drop-target', inside);
+            });
+        };
+
+        const onUp = () => {
+            clearTimeout(longPressTimer);
+            document.removeEventListener('pointermove', onMove);
+            document.removeEventListener('pointerup', onUp);
+
+            if (!dragging) return;
+
+            tab.classList.remove('dragging');
+            tab.style.transform = '';
+            tab.style.touchAction = '';
+
+            const target = tabsContainer.querySelector('.drop-target');
+            if (target) {
+                target.classList.remove('drop-target');
+                const targetIdx = parseInt(target.dataset.index, 10);
+                swapDeposits(idx, targetIdx);
+            }
+        };
+
+        document.addEventListener('pointermove', onMove);
+        document.addEventListener('pointerup', onUp);
+    }
+
+    // Смена мест двух вкладов
+    function swapDeposits(i, j) {
+        if (i === j) return;
+
+        [deposits[i], deposits[j]] = [deposits[j], deposits[i]];
+        deposits.forEach((deposit, idx) => {
+            deposit.number = idx + 1;
+        });
+
+        if (currentIndex === i) currentIndex = j;
+        else if (currentIndex === j) currentIndex = i;
+
+        renderAll();
+        goToPage(currentIndex, false);
     }
     
     // Выход из режима итога
