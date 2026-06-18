@@ -69,7 +69,8 @@
 
 .input-group input:focus {
     outline: none;
-    border-color: #3498db;
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 1px rgba(91, 141, 239, 0.25);
 }
 
 .input-hint {
@@ -100,10 +101,23 @@
 
 /* Карточка результата */
 .result-card {
-    background: #2c2e33;
+    background: linear-gradient(145deg, #2c2e33 0%, #343840 100%);
     border-radius: 12px;
     padding: 20px;
     margin-bottom: 16px;
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: background 0.4s ease, border-color 0.4s ease;
+}
+
+/* Карточка прибыли — цветовой фон по результату */
+.result-card--positive {
+    background: linear-gradient(145deg, #2c2e33 0%, rgba(78, 205, 196, 0.14) 100%);
+    border-color: rgba(78, 205, 196, 0.3);
+}
+
+.result-card--negative {
+    background: linear-gradient(145deg, #2c2e33 0%, rgba(255, 107, 107, 0.14) 100%);
+    border-color: rgba(255, 107, 107, 0.3);
 }
 
 /* Объединённая карточка */
@@ -131,6 +145,8 @@
     color: white;
     font-size: 24px;
     font-weight: 700;
+    font-family: 'Courier New', 'Roboto Mono', monospace;
+    letter-spacing: 0.5px;
 }
 
 /* Статус сделки */
@@ -144,15 +160,15 @@
 }
 
 .status-badge.positive {
-    background: rgba(40, 167, 69, 0.2);
-    border: 2px solid #28a745;
-    color: #28a745;
+    background: rgba(78, 205, 196, 0.15);
+    border: 2px solid var(--accent-mint);
+    color: var(--accent-mint);
 }
 
 .status-badge.negative {
-    background: rgba(220, 53, 69, 0.2);
-    border: 2px solid #dc3545;
-    color: #dc3545;
+    background: rgba(255, 107, 107, 0.15);
+    border: 2px solid var(--negative);
+    color: var(--negative);
 }
 
 .status-badge.neutral {
@@ -185,8 +201,9 @@
 }
 
 .page-tab.active {
-    background: white;
-    color: #212224;
+    background: var(--accent-blue);
+    color: white;
+    border-color: var(--accent-blue);
 }
 
 /* Поле выбора (select) */
@@ -268,7 +285,7 @@
 }
 
 .history-item-profit.positive {
-    color: #28a745;
+    color: var(--accent-mint);
 }
 
 .history-item-profit.negative {
@@ -297,8 +314,8 @@
 
 /* Кнопка копирования - визуальный фидбек */
 #copyButton.copied {
-    border-color: #28a745;
-    color: #28a745;
+    border-color: var(--accent-mint);
+    color: var(--accent-mint);
 }
 
 /* Информационная секция */

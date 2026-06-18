@@ -59,9 +59,9 @@
 }
 
 .deposit-tab.active {
-    background: white;
-    color: #212224;
-    border-color: white;
+    background: var(--accent-blue);
+    color: white;
+    border-color: var(--accent-blue);
 }
 
 .deposit-tab.dragging {
@@ -74,8 +74,8 @@
 }
 
 .deposit-tab.drop-target {
-    border-color: #3498db;
-    background: rgba(52, 152, 219, 0.25);
+    border-color: var(--accent-blue);
+    background: rgba(91, 141, 239, 0.2);
 }
 
 .header-actions {
@@ -157,7 +157,8 @@
 .summary-card {
     flex: 1;
     min-width: 180px;
-    background: #2c2e33;
+    background: linear-gradient(145deg, #2c2e33 0%, #343840 100%);
+    border: 1px solid rgba(255,255,255,0.05);
     border-radius: 20px;
     padding: 20px;
     text-align: center;
@@ -206,7 +207,8 @@
 .form-field input:focus,
 .form-field select:focus {
     outline: none;
-    border-color: #3498db;
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 1px rgba(91, 141, 239, 0.25);
 }
 
 .term-group {
@@ -231,7 +233,8 @@
 
 .result-item {
     flex: 1;
-    background: #2c2e33;
+    background: linear-gradient(145deg, #2c2e33 0%, #343840 100%);
+    border: 1px solid rgba(255,255,255,0.05);
     border-radius: 20px;
     padding: 16px;
     text-align: center;

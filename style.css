@@ -1,3 +1,11 @@
+:root {
+    --accent-blue: #5B8DEF;
+    --accent-mint: #4ECDC4;
+    --accent-purple: #9B59B6;
+    --positive: #4ECDC4;
+    --negative: #FF6B6B;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -75,6 +83,19 @@ body {
     text-align: center;
     min-height: 400px;
     padding: 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Матричный фон */
+#matrixCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.55;
 }
 
 /* Главный заголовок coNVErt */
@@ -84,6 +105,9 @@ body {
     color: white;
     letter-spacing: 8px;
     margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 0 40px rgba(91, 141, 239, 0.5);
 }
 
 /* Подзаголовок */
@@ -92,6 +116,58 @@ body {
     color: rgba(255,255,255,0.7);
     font-weight: 400;
     letter-spacing: 2px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Тикер котировок */
+.ticker-wrapper {
+    overflow: hidden;
+    padding: 14px 0;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    background: rgba(44, 46, 51, 0.6);
+    white-space: nowrap;
+}
+
+.ticker-track {
+    display: inline-block;
+    animation: tickerMove 35s linear infinite;
+}
+
+@keyframes tickerMove {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.ticker-item {
+    display: inline-block;
+    padding: 0 28px;
+    font-size: 13px;
+    font-family: 'Courier New', monospace;
+    color: rgba(255,255,255,0.55);
+}
+
+.ticker-symbol {
+    color: white;
+    font-weight: 600;
+    margin-right: 6px;
+}
+
+.ticker-value {
+    margin-right: 4px;
+}
+
+.ticker-change.up   { color: var(--accent-mint); }
+.ticker-change.down { color: var(--negative); }
+
+/* Анимация смены вкладок */
+@keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.tab-panel {
+    animation: fadeSlideIn 0.3s ease;
 }
 
 /* Выпадающее меню */

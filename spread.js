@@ -99,6 +99,13 @@ document.addEventListener('DOMContentLoaded', () => {
         buyPriceGroup.classList.toggle('input-error', isNegative);
         sellPriceGroup.classList.toggle('input-error', isNegative);
 
+        // Цвет карточки чистой прибыли
+        const netProfitCard = document.getElementById('netProfitCard');
+        if (netProfitCard) {
+            netProfitCard.classList.toggle('result-card--positive', netProfit > 0);
+            netProfitCard.classList.toggle('result-card--negative', netProfit < 0);
+        }
+
         return { buy, sell, vol, extra, buyFeePercent, sellFeePercent, totalCost, totalRevenue, spread, spreadPercentValue, netProfit };
     }
 
