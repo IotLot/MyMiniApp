@@ -9,30 +9,28 @@
 <body>
     <canvas id="matrixCanvas"></canvas>
     <div class="container" style="background: transparent;">
-        <div class="top-section">
-            <button class="menu-button" id="menuButton">
-                <span class="menu-icon">☰</span>
-                <span class="menu-text">Меню</span>
-            </button>
-        </div>
-        
         <div class="center-section">
             <h1 class="main-title">coNVErt</h1>
             <p class="subtitle">умный калькулятор</p>
+            <div class="menu-wrapper">
+                <button class="menu-button" id="menuButton">
+                    <span class="menu-icon">☰</span>
+                    <span class="menu-text">Меню</span>
+                </button>
+                <div class="dropdown-menu" id="dropdownMenu">
+                    <div class="dropdown-arrow"></div>
+                    <div class="dropdown-items">
+                        <a href="spread.html" class="dropdown-item">Калькулятор спреда</a>
+                        <a href="deposit.html" class="dropdown-item">Калькулятор вкладов</a>
+                        <button class="dropdown-item">Калькулятор сложного процента</button>
+                        <button class="dropdown-item">Мультивалютный калькулятор</button>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="ticker-wrapper">
             <div class="ticker-track" id="tickerTrack"></div>
-        </div>
-
-        <div class="dropdown-menu" id="dropdownMenu">
-            <div class="dropdown-arrow"></div>
-            <div class="dropdown-items">
-                <a href="spread.html" class="dropdown-item">Калькулятор спреда</a>
-                <a href="deposit.html" class="dropdown-item">Калькулятор вкладов</a>
-                <button class="dropdown-item">Калькулятор сложного процента</button>
-                <button class="dropdown-item">Мультивалютный калькулятор</button>
-            </div>
         </div>
     </div>
     
