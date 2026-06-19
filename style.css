@@ -28,8 +28,6 @@ body {
     max-width: 1200px;
     min-height: 90vh;
     background-color: #212224;
-    border-left: 2px solid rgba(255,255,255,0.1);
-    border-right: 2px solid rgba(255,255,255,0.1);
     position: relative;
     display: flex;
     flex-direction: column;
