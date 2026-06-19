@@ -36,9 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let drops = [];
 
     function resizeCanvas() {
-        const section = canvas.parentElement;
-        canvas.width = section.offsetWidth;
-        canvas.height = section.offsetHeight;
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
         const columns = Math.floor(canvas.width / fontSize);
         drops = Array.from({ length: columns }, () => Math.random() * -50);
     }
