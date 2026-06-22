@@ -1,3 +1,33 @@
+/* Переключатель контекста Вложение / Долг */
+.mode-toggle {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 28px;
+}
+
+.mode-btn {
+    background: transparent;
+    border: 1.5px solid rgba(255,255,255,0.25);
+    border-radius: 30px;
+    padding: 6px 20px;
+    color: rgba(255,255,255,0.5);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.mode-btn:hover:not(.active) {
+    border-color: rgba(255,255,255,0.6);
+    color: white;
+}
+
+.mode-btn.active {
+    background: var(--accent-blue);
+    border-color: var(--accent-blue);
+    color: white;
+}
+
 /* Строка ввода срока */
 .term-row {
     display: flex;

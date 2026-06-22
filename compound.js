@@ -146,5 +146,68 @@ document.addEventListener('DOMContentLoaded', () => {
     resetButton.addEventListener('click', resetAll);
     copyButton.addEventListener('click', copyResult);
 
+    // ===== Переключатель контекста: Вложение / Долг =====
+    const MODES = {
+        invest: {
+            principalField:     'Начальная сумма',
+            principalHint:      'Стартовый капитал',
+            contributionField:  'Регулярное пополнение',
+            contributionHint:   'За каждый период начисления (0 = без пополнений)',
+            finalAmount:        'Итоговая сумма',
+            invested:           'Инвестировано',
+            income:             'Доход от %',
+            multiplier:         'Множитель роста',
+            yield:              'Доходность',
+            thBalance:          'Баланс',
+            thInvested:         'Инвестировано',
+            thIncome:           'Доход от %',
+        },
+        debt: {
+            principalField:     'Сумма долга',
+            principalHint:      'Начальный размер долга',
+            contributionField:  'Регулярная выплата',
+            contributionHint:   'За каждый период начисления (0 = без выплат)',
+            finalAmount:        'Итого к выплате',
+            invested:           'Тело долга + выплаты',
+            income:             'Начисленные проценты',
+            multiplier:         'Множитель долга',
+            yield:              'Переплата в %',
+            thBalance:          'Остаток',
+            thInvested:         'Тело + выплаты',
+            thIncome:           'Начислено %',
+        }
+    };
+
+    function applyMode(mode) {
+        const m = MODES[mode];
+        document.getElementById('labelPrincipalField').textContent    = m.principalField;
+        document.getElementById('hintPrincipal').textContent          = m.principalHint;
+        document.getElementById('labelContributionField').textContent = m.contributionField;
+        document.getElementById('hintContribution').textContent       = m.contributionHint;
+        document.getElementById('labelFinalAmount').textContent       = m.finalAmount;
+        document.getElementById('labelInvested').textContent          = m.invested;
+        document.getElementById('labelIncome').textContent            = m.income;
+        document.getElementById('labelMultiplier').textContent        = m.multiplier;
+        document.getElementById('labelYield').textContent             = m.yield;
+        document.getElementById('thBalance').textContent              = m.thBalance;
+        document.getElementById('thInvested').textContent             = m.thInvested;
+        document.getElementById('thIncome').textContent               = m.thIncome;
+    }
+
+    const modeInvestBtn = document.getElementById('modeInvest');
+    const modeDebtBtn   = document.getElementById('modeDebt');
+
+    modeInvestBtn.addEventListener('click', () => {
+        modeInvestBtn.classList.add('active');
+        modeDebtBtn.classList.remove('active');
+        applyMode('invest');
+    });
+
+    modeDebtBtn.addEventListener('click', () => {
+        modeDebtBtn.classList.add('active');
+        modeInvestBtn.classList.remove('active');
+        applyMode('debt');
+    });
+
     calculate();
 });
