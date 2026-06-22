@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>coNVErt - Сложный процент</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="spread.css">
+    <link rel="stylesheet" href="compound.css">
+</head>
+<body>
+    <div class="container">
+        <div class="top-section">
+            <a href="index.html" class="back-button">← Назад</a>
+        </div>
+
+        <div class="calculator-layout">
+            <!-- Левая колонка — поля ввода -->
+            <div class="inputs-column">
+                <h2>Калькулятор сложного процента</h2>
+
+                <div class="input-group">
+                    <label>Начальная сумма</label>
+                    <input type="number" id="principal" step="1000" value="100000">
+                    <span class="input-hint">Стартовый капитал</span>
+                </div>
+
+                <div class="input-group">
+                    <label>Процентная ставка, % годовых</label>
+                    <input type="number" id="rate" step="0.1" value="10">
+                </div>
+
+                <div class="input-group">
+                    <label>Срок</label>
+                    <div class="term-row">
+                        <input type="number" id="term" step="1" value="5" min="1">
+                        <select id="termUnit">
+                            <option value="year">Лет</option>
+                            <option value="month">Месяцев</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Частота начисления процентов</label>
+                    <select id="compoundFreq">
+                        <option value="365">Ежедневно</option>
+                        <option value="12" selected>Ежемесячно</option>
+                        <option value="4">Ежеквартально</option>
+                        <option value="1">Раз в год</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>Регулярное пополнение</label>
+                    <input type="number" id="contribution" step="100" value="0" min="0">
+                    <span class="input-hint">За каждый период начисления (0 = без пополнений)</span>
+                </div>
+
+                <button class="reset-button" id="resetButton">Сбросить все поля</button>
+            </div>
+
+            <!-- Правая колонка — результаты -->
+            <div class="results-column">
+                <div class="result-card" id="finalAmountCard">
+                    <div class="result-label">Итоговая сумма</div>
+                    <div class="result-value" id="finalAmount">0.00</div>
+                </div>
+
+                <div class="result-card combined">
+                    <div class="combined-row">
+                        <div class="combined-item">
+                            <div class="result-label">Инвестировано</div>
+                            <div class="result-value" id="totalInvested">0.00</div>
+                        </div>
+                        <div class="combined-item">
+                            <div class="result-label">Доход от %</div>
+                            <div class="result-value" id="totalIncome">0.00</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result-card combined">
+                    <div class="combined-row">
+                        <div class="combined-item">
+                            <div class="result-label">Множитель роста</div>
+                            <div class="result-value" id="multiplier">×1.00</div>
+                        </div>
+                        <div class="combined-item">
+                            <div class="result-label">Доходность</div>
+                            <div class="result-value" id="totalYield">0.00%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="reset-button" id="copyButton">Скопировать результат</button>
+            </div>
+        </div>
+
+        <!-- Таблица роста по периодам -->
+        <div class="growth-section">
+            <h3>Рост по периодам</h3>
+            <div class="growth-table-wrapper">
+                <table class="growth-table">
+                    <thead>
+                        <tr>
+                            <th>Период</th>
+                            <th>Баланс</th>
+                            <th>Инвестировано</th>
+                            <th>Доход от %</th>
+                        </tr>
+                    </thead>
+                    <tbody id="growthTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h3>Что такое сложный процент</h3>
+            <p>Сложный процент — это начисление процентов не только на первоначальную сумму, но и на уже накопленные проценты. Это приводит к экспоненциальному росту капитала со временем.</p>
+            <p>Альберт Эйнштейн называл сложный процент «восьмым чудом света»: тот, кто его понимает — зарабатывает, тот, кто не понимает — платит.</p>
+        </div>
+    </div>
+
+    <script src="compound.js"></script>
+</body>
+</html>

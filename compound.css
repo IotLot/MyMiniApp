@@ -1,0 +1,105 @@
+/* Строка ввода срока */
+.term-row {
+    display: flex;
+    gap: 10px;
+}
+
+.term-row input  { flex: 2; }
+.term-row select { flex: 1; }
+
+/* Карточка итоговой суммы — акцент синим */
+#finalAmountCard {
+    background: linear-gradient(145deg, #2c2e33 0%, rgba(91, 141, 239, 0.15) 100%);
+    border: 1px solid rgba(91, 141, 239, 0.35) !important;
+}
+
+#finalAmountCard .result-value {
+    color: var(--accent-blue);
+    font-size: 30px;
+}
+
+/* Раздел таблицы роста */
+.growth-section {
+    padding: 40px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.growth-section h3 {
+    color: white;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.growth-table-wrapper {
+    overflow-x: auto;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.07);
+}
+
+.growth-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Courier New', monospace;
+}
+
+.growth-table th {
+    color: rgba(255,255,255,0.55);
+    font-size: 12px;
+    font-weight: 500;
+    text-align: left;
+    padding: 12px 18px;
+    background: rgba(255,255,255,0.03);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.growth-table td {
+    color: white;
+    font-size: 14px;
+    padding: 11px 18px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.growth-table tbody tr:last-child td {
+    border-bottom: none;
+    color: var(--accent-mint);
+    font-weight: 700;
+}
+
+.growth-table tbody tr:hover td {
+    background: rgba(255,255,255,0.03);
+}
+
+.growth-table td:first-child {
+    color: rgba(255,255,255,0.55);
+    font-size: 12px;
+}
+
+/* Кнопка копирования */
+#copyButton.copied {
+    border-color: var(--accent-mint);
+    color: var(--accent-mint);
+}
+
+/* Мобильная адаптация */
+@media (max-width: 768px) {
+    .growth-section {
+        padding: 24px 16px;
+    }
+
+    .growth-section h3 {
+        font-size: 20px;
+    }
+
+    .growth-table th,
+    .growth-table td {
+        padding: 9px 12px;
+        font-size: 12px;
+    }
+
+    #finalAmountCard .result-value {
+        font-size: 24px;
+    }
+}
