@@ -107,6 +107,32 @@
     font-size: 12px;
 }
 
+/* Карточка в режиме Долг — погашен (зелёная) */
+#finalAmountCard.final-card--paid {
+    background: linear-gradient(145deg, #2c2e33 0%, rgba(78, 205, 196, 0.15) 100%) !important;
+    border-color: rgba(78, 205, 196, 0.35) !important;
+}
+
+#finalAmountCard.final-card--paid .result-value {
+    color: var(--accent-mint) !important;
+}
+
+/* Карточка в режиме Долг — ещё не погашен (красноватая) */
+#finalAmountCard.final-card--debt {
+    background: linear-gradient(145deg, #2c2e33 0%, rgba(255, 107, 107, 0.12) 100%) !important;
+    border-color: rgba(255, 107, 107, 0.3) !important;
+}
+
+#finalAmountCard.final-card--debt .result-value {
+    color: var(--negative) !important;
+}
+
+/* Строка погашения в таблице */
+.row-paid-off td {
+    color: var(--accent-mint) !important;
+    font-weight: 700;
+}
+
 /* Кнопка копирования */
 #copyButton.copied {
     border-color: var(--accent-mint);
